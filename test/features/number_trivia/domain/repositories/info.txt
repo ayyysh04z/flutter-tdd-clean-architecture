@@ -1,0 +1,3 @@
+The data layer consists of a Repository implementation (the contract comes from the domain layer) and data sources - 
+one is usually for getting remote (API) data and the other for caching that data. Repository is where you decide if 
+you return fresh or cached data, when to cache it and so on.

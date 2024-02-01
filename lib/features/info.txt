@@ -1,0 +1,32 @@
+domain : includes all the core buisness logic in app
+(indepedent of every other layer)
+
+all features in app like : get concrete no trivia
+                           get random no trivia
+These are all usecases
+
+entities are model classe which return the data via usecases methods
+(same as of data but includes methods like toJson ,fromjson,etc)
+
+Repo pases data models via providers to domain layer as entities fetched via usecases
+Repo is in both domain and data via dependency inversion : That's just a fancy way of saying that we create an abstract Repository class defining 
+a contract of what the Repository must do - this goes into the domain layer. We then depend on the Repository "contract" defined in domain, knowing 
+that the actual implementation of the Repository in the data layer will fullfill this contract.
+
+sumary : domain layer -> includes contract (just abstract methods)
+        data layer -> implements it
+Dependency inversion principle is the last of the SOLID principles. It basically states that the boundaries between layers should be handled with 
+interfaces (abstract classes in Dart).
+
+You may notice that data sources don't return Entities but rather Models. The reason behind this is that transforming raw data (e.g JSON) into Dart 
+objects requires some JSON conversion code. We don't want this JSON-specific code inside the domain Entities - what if we decide to switch to XML?
+Therefore, we create Model classes which extend Entities and add some specific functionality (toJson, fromJson) or additional fields, like database 
+ID, for example.
+
+SOLID principle : 
+Single Responsibility Principle/separation of concerns (SRP): A class should have only one reason to change, meaning it should have only one responsibility or job within the system.
+Never put any business or presentation logic into the UI. Flutter apps are especially susceptible to this since the UI code is also written in Dart.
+
+Open/Closed Principle (OCP): Software entities (classes, modules, functions, etc.) should be open for extension but closed for modification, promoting the use of inheritance and interfaces for extending behavior.
+Liskov Substitution Principle (LSP): Objects of a superclass should be replaceable with objects of a subclass without affecting the correctness of the program, ensuring that derived classes adhere to the behavior expected of the base class.
+Interface Segregation Principle (ISP): A class should not be forced to implement interfaces it does not use. Instead of having large, monolithic interfaces, use smaller, specific ones.

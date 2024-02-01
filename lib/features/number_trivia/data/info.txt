@@ -1,0 +1,29 @@
+While the domain layer is the safe center of an app which is independent of other layers, the data layer is a place where the app meets with 
+the harsh outside world of APIs and 3rd party libraries. It consists of low-level Data Sources, Repositories which are the single source of truth 
+for the data, and finally Models.
+
+The Need for Models :
+Method return types of the data sources will be very similar to the ones in the repository but with two HUGE differences. 
+They're not going to return the errors "inline" by using Failures, INSTEAD THEY WILL THROW EXECPTION.
+Also, rather than returning NumberTrivia entities, they're going to return NumberTriviaModel objects.
+All of this happens because data sources are at the absolute boundary between the nice and cozy world of our own code 
+and the scary outside world of  APIs and 3rd party libraries.
+
+Models are entities with some additional functionality added on top. In our case, that will be the ability to be serialized 
+and deserialized to/from JSON. The API will respond with data in a JSON format, so we need to have a way to convert it to Dart objects.
+
+Implementing the Contract
+Interfaces, abstract classes,... whatever. Every language has its own spin on it. The important thing is that we already have a contract 
+which the Repository implementation must fulfill. This way, the Use Cases communicating with the Repository don't have to know a thing 
+about how to it operates.
+
+NOTE: Are Data Sources enough though? After all, we will cache the latest NumberTrivia locally to make sure the user sees something even when 
+he's offline. This means, we'll also need to have a way to find out about the current state of the network connection. Since we want to keep 
+our code as independent from the outside world as possible, we won't just plop any 3rd party library for connectivity directly into the Repository.
+ Instead, we'll create a NetworkInfo class.
+ (network_info.dart file under the core/platform folder)
+ Repository should take in the remote and local Data Sources and also a NetworkInfo object.
+
+#REPO METHODS WILL CACHE DATA SOURCES EXCEPTIONS
+Since we're dealing with Exceptions, let's also get the Failures out of the way. Remember, the Repository will catch the Exceptions and
+ return them using the Either type as Failures. For this reason, Failure types usually exactly map to Exception types.
