@@ -25,3 +25,6 @@ https://github.com/esskar/vscode-flutter-i18n-json
 
 bloc boiler code :
 https://github.com/fikretsengul/flutter_advanced_boilerplate
+
+examples :
+https://github.com/lambiengcode/flutter-live-stream-ui

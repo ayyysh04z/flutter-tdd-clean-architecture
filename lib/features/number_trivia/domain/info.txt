@@ -1,2 +1,4 @@
 Writing a contract of the Repository, which in the case of Dart is an abstract class, will allow us to write tests (TDD style) for the 
 UseCases without having an actual Repository implementation.
+
+https://proandroiddev.com/why-you-need-use-cases-interactors-142e8a6fe576

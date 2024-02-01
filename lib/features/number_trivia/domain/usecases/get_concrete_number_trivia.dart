@@ -13,6 +13,9 @@ class GetConcreteNumberTrivia implements UseCase<NumberTrivia, Params> {
 
   @override
   Future<Either<Failure, NumberTrivia>> call(Params params) async {
+    //In Test-Driven Development (TDD) and clean architecture, it's common to have use cases that delegate to repository classes. However,
+    // it's important to note that the use case is not just a pass-through to the repository; it encapsulates business logic, validation, and
+    //coordination of data flow. While simple use cases may seem like they only call the repository, they can evolve to include more business logic as the application requirements grow.
     return await repository.getConcreteNumberTrivia(params.number);
   }
 }
