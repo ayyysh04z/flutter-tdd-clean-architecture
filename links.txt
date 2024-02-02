@@ -28,3 +28,6 @@ https://github.com/fikretsengul/flutter_advanced_boilerplate
 
 examples :
 https://github.com/lambiengcode/flutter-live-stream-ui
+https://github.com/eliezerantonio/Flutter-TDD-Clean-Architecture-SOLID-e-Design-Patterns
+
+to gen test classes : flutter packages pub run build_runner build
